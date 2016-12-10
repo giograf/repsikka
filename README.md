@@ -17,7 +17,7 @@ The navbar can be inserted to any page easily by _at least_ doing the following:
 ```HTML
 <body ng-app="repsikkaApp">
 ```
-(the ng-app="repsikka" makes the angular work with the page you are working on)
+(the ng-app="repsikkaApp" makes the angular work with the page you are working on)
 
 - Lastly, you can get the topbar simply by putting a page-heading attribute inside a div element. Make sure you have navbar classes marked for the element, to make the navbar work properly!
 ```HTML
