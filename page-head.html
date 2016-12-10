@@ -1,1 +1,51 @@
-WIP page head file...
+<div class="container-fluid">
+
+   <div class="navbar-header">
+      <button type="button" class="navbar-toggle"
+              data-toggle="collapse" data-target=".navbar-collapse">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Repsikka</a>
+   </div>
+
+   <div class="collapse navbar-collapse"> 
+      <!-- Yenno, this searchbar is redundant anyways, no need to
+           put it in anyways and it is a pain in the ass to set
+           up correctly...
+
+           And we can make the navbar onelined easier this way also!
+
+           Leaving it here commented, IF this is required....
+           ~Aatu
+
+      <form class="navbar-form">
+         <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for jobs...">
+            <div class="input-group-btn">
+               <button class="btn btn-default">
+                  <i class="glyphicon glyphicon-search"></i>
+               </button>
+            </div>
+         </div>
+      </form>
+      -->
+
+      <ul class="nav navbar-nav navbar-left">
+         <li><a href="#">Home</a></li>
+         <li><a href="#">Jobs</a></li>
+         <li><a href="#">About us</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+         <!-- This is to show the logged in user's username and
+              account balance. Otherwise show the log in prompt. -->
+         <li user-information>
+         <!-- TODO: Make the login a dropdown or a popover element.... -->
+            <a href="#"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+         </li>
+      </ul>
+   </div>
+
+</div>
