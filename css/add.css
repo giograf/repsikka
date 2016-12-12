@@ -1,3 +1,8 @@
+/*
+    Add the border and the padding to the form
+    The bottom margin is added for smaller viewports, in case the form takes the whole page.
+ */
+
 .adding_form{
     border: 1px solid rgb(154, 158, 165);
     border-radius: 2px;

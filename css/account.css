@@ -1,0 +1,53 @@
+
+/* Justify and center the pills */
+.pill {
+    margin-top: 5px;
+    width: 33%;
+    text-align: center;
+}
+
+/* Alligning user icon with the user information on the right */
+.person_icon {
+    margin-top: 5px;
+}
+
+/* Centering the legend and moving it away from the pills */
+.jobs_legends {
+    padding-top: 35px;
+    text-align: center;
+}
+
+/* Styling for the job entry both for employer and employee pills */
+.job_object{
+    padding: 15px 5px 15px 5px;
+    margin-top: 15px;
+    border: 2px ridge rgb(204, 208, 215);
+    border-radius: 4px;
+}
+
+/* User description properties */
+.person-text{
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+/* User name has bigger font */
+.name {
+    font-size: 17px;
+}
+
+/* Make reviews stay further from the user infomation */
+.user_reviews {
+    padding-top: 25px;
+}
+
+/* Make the account pill content stay further from the navigation pills */
+.account_pill_content{
+    margin-top: 15px;
+}
+
+/*  */
+.review_block_padding {
+    padding-top: 40px;
+    padding-bottom: -10px;
+}
