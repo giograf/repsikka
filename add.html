@@ -17,6 +17,7 @@
 
       <!-- Page-relevant CSS/JS scripts -->
       <script src="./js/main-angular.js"></script>
+      <link rel="stylesheet" href="./css/add.css" />
 
    </html>
    <body ng-app="repsikkaApp"><!-- ng-app to activate the "main-angular.js" script. -->
@@ -32,19 +33,18 @@
                "name" - text
                "date" - date
                "location" - select-option
-               "from"
-               "to"
+               "time" - select-option
                "category" - select-option
                "pay" - number
                "description" - textarea
          -->
-         <form action="#" class="form-horizontal">
+         <form action="#" class="form-horizontal adding_form">
             <div class="form-group">
                <label for="name" class="col-xs-12 col-md-2">Contact Name</label>
                <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
                   <input type="text" name="name" id="name" class="form-control" required>
                </div>
-               <label for="date" class="col-xs-12 col-md-push-1 col-md-3">Starting Date</label>
+               <label for="date" class="col-xs-12 col-md-push-1 col-md-3">Date</label>
                <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
                   <div class="input-group">
                      <input type="text" name="date" id="date" class="form-control" required>
@@ -60,13 +60,9 @@
                      <option value="">(select municipality)</option>
                   </select>
                </div>
-               <label for="from" class="col-xs-12 col-md-push-1 col-md-2">From</label>
+               <label for="time" class="col-xs-12 col-md-push-1 col-md-2">Time</label>
                <div class="form-group  col-xs-6 col-xs-push-1 col-md-push-0 col-md-2">
-                  <input type="time" id="from" name="from" class="form-control col-xs-push-1" required>
-               </div>
-               <label for="to" class="col-xs-12 col-md-1">To</label>
-               <div class="form-group  col-xs-6 col-xs-push-1 col-md-push-0 col-md-2">
-                  <input type="time" id="to" name="to" class="form-control col-xs-push-1" required>
+                  <input type="time" id="time" name="time" class="form-control col-xs-push-1" required>
                </div>
             </div>
             <!--  -->
@@ -90,7 +86,9 @@
             <div class="form-group">
                <label class="col-xs-12" for="description">Job Description</label>
                <div class="form-group  col-xs-7 col-xs-push-1 col-md-push-0 col-md-6">
-                  <textarea class="form-control" name="description" id="description" required></textarea>
+                  <textarea class="form-control" name="description" id="description" required></textarea><br>
+                  <p>By adding a job, you agree that you've read and accepted our <a href="">Job Posting Agreement</a>,
+                     and you consent to our disclose content information to the employee.</p>
                </div>
                <button type="submit" class="btn btn-primary col-xs-2 col-xs-push-2">Post   </button>
             </div>
