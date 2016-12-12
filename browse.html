@@ -10,6 +10,7 @@
 
       <!-- CSS/JS Libraries -->
       <link rel="stylesheet" href="./css/bootstrap.min.css" />
+      <link rel="stylesheet" href="./css/browse.css"/>
       <!--<link rel="stylesheet" href="./css/bootstrap.theme.min.css" /> Optional Bootstrap theme file -->
       <script src="./libs/jquery-3.1.1.min.js"></script>
       <script src="./libs/angular.min.js"></script>
@@ -17,13 +18,71 @@
 
       <!-- Page-relevant CSS/JS scripts -->
       <script src="./js/main-angular.js"></script>
-
+      
    </html>
    <body ng-app="repsikkaApp"><!-- ng-app to activate the "main-angular.js" script. -->
 
       <!-- This is the topbar of the webpage, easily accesible. Can be get using page-heading attribute.
            Remember to add the navbar classes for the navbar :) -->
       <div page-heading class="navbar navbar-default"></div>
+
+      <div class="container" ng-controller="filterCtrl">
+        <h3>Search Filters</h3>
+        <form class="form-horizontal">
+          <div class="form-group col-sm-2">
+            <h5>Categories</h5>
+            <label><input type="checkbox" ng-model="FilteringArray['Deliver']" /> Delivery</label><br>
+            <label><input type="checkbox" ng-model="FilteringArray['Cook']" /> Cooking</label><br>
+            <label><input type="checkbox" ng-model="FilteringArray['Cleaning']" /> Cleaning</label><br>
+            <label><input type="checkbox" ng-model="FilteringArray['Tutoring']" /> Tutoring</label><br>
+            <label><input type="checkbox" ng-model="FilteringArray['Babysitting']" /> Babysitting</label><br>
+            <div class="col-sm-10">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="control-label col-sm-2"></div>
+          <div class="col-sm-10">
+              <ul class="list-group" ng-repeat="job in jobs | filter:categoryFilter">
+                <li class="list-group-item" id="{{$index}}" data-toggle="modal" data-target="#Module{{$index}}">{{job.name}}</li>
+                <!-- Big as Modal code that is required-->
+                <div class="modal fade" id="Module{{$index}}" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{job.name}}</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div>
+                          <p>{{job.descreption}}</p>
+                      </div>
+                      <div class="modalinfo">
+                        Payment: {{job.pay}}<br>
+                        Location: {{job.location}}<br>
+                        Date: {{job.date}}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Big as Modal code that is required-->
+              </ul>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10"></div>
+              <div class="col-sm-10">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+            </div>
+          </div>
+        </form>
+      </div>
 
    </body>
 </html>
