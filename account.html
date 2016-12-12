@@ -30,13 +30,13 @@
 
       <!-- Pills bellow are visible for all viewports except for the xs (mobile) viewports)
            Seperate code is required for the xs viewport due to animation and different structure of the mobile version -->
-      <div class="hidden-xs container">
+      <div class="hidden-xs container" ng-controller="pillFillerCtrl">
          <!-- Navigation for Pills -->
          <div class="row" data-name="account_pills">
             <ul class="nav nav-pills col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
-               <li class="active pill"><a data-toggle="tab" href="#employee">For Worker</a></li>
-               <li class="pill"><a data-toggle="tab" href="#employer">For Employee</a></li>
-               <li class="pill"><a data-toggle="tab" href="#account">My Account</a></li>
+               <li ng-class="{active : $first}" class="pill" ng-repeat="content in pill_content">
+                  <a data-toggle="tab" ng-href="{{'#' + content.id}}">{{content.pill_name}}</a>
+               </li>
             </ul>
          </div>
 
@@ -44,12 +44,12 @@
 
          <div class="tab-content row">
 
-            <!-- Employee's Tab -->
+            <!-- Employee and Employer's Pills -->
 
-            <div role="tabpanel" class="tab-pane active col-sm-12" id="employee">
+            <div role="tabpanel" class="tab-pane col-sm-12" ng-class="{active: $first}" id="{{content.id}}" ng-repeat="content in pill_content | limitTo : 2">
                <div class="row">
                   <fieldset class="col-sm-6">
-                     <legend class="jobs_legends">Current Job
+                     <legend class="jobs_legends">{{content.tab_name_1}}
                      </legend>
                      <div class="row">
                         <div class="col-sm-8 col-sm-push-2 job_object">
@@ -98,112 +98,7 @@
                      </div>
                   </fieldset>
                   <fieldset class="col-sm-6">
-                     <legend class="jobs_legends">Jobs Applied
-                     </legend>
-                     <div class="row">
-                        <div class="col-sm-8 col-sm-push-2 job_object">
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Name</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 Snow Cleaning
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Pay</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 25 euro
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Description</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 My backyard has gotten messy after the blizzard, need a snow cleaner
-                                 for 2-3 hours
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Place</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 Peltola, Oulu
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Time</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 12:30, 15/12/2016
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </fieldset>
-               </div>
-            </div>
-
-            <!-- Employer's Pill -->
-
-            <div role="tabpanel" class="tab-pane" id="employer">
-               <div class="row">
-                  <fieldset class="col-sm-6">
-                     <legend class="jobs_legends">Jobs Being Done
-                     </legend>
-                     <div class="row">
-                        <div class="col-sm-8 col-sm-push-2 job_object">
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Name</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 Snow Cleaning
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Pay</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 25 euro
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Description</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 My backyard has gotten messy after the blizzard, need a snow cleaner
-                                 for 2-3 hours
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Place</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 Peltola, Oulu
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-5" style="text-align:right">
-                                 <strong>Time</strong>
-                              </div>
-                              <div class="col-sm-6">
-                                 12:30, 15/12/2016
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </fieldset>
-                  <fieldset class="col-sm-6">
-                     <legend class="jobs_legends">Jobs I Posted
+                     <legend class="jobs_legends">{{content.tab_name_2}}
                      </legend>
                      <div class="row">
                         <div class="col-sm-8 col-sm-push-2 job_object">

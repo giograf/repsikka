@@ -22,6 +22,28 @@ app.controller('navbarCtrl', function($scope, $window){
       }
    };
 });
+app.controller('pillFillerCtrl', function($scope){
+
+    // The following controller fills out the Account page.
+    $scope.currentPane = 0; // default pane
+    $scope.pill_content = [{
+        "pill_name": "For Worker",
+        "id": "employee",
+        "tab_name_1": "Current Job I Have to Do",
+        "tab_name_2": "Jobs Applied"
+    },
+    {
+        "pill_name": "For Employer",
+        "id": "employer",
+        "tab_name_1": "Jobs Being Done For Me",
+        "tab_name_2": "Jobs I Posted"
+    },
+    {
+        "pill_name": "My Account",
+        "id": "account"
+    }
+    ]
+});
 
 app.directive( 'pageHeading', function()
 {
