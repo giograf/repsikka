@@ -44,7 +44,7 @@
               account balance. Otherwise show the log in prompt. -->
          <li>
          <!-- TODO: Make the login a dropdown or a popover element.... -->
-            <a ng-href="{{getNavLink('account.html')}}"><span class="glyphicon glyphicon-user"></span> Hello, {{user.name}} | {{user.balance | currency}}</a>
+            <a ng-href="{{getNavLink('account.html')}}"><span class="glyphicon glyphicon-user"></span>{{user.name}} | {{user.balance | currency}}</a>
          </li>
       </ul>
    </div>
