@@ -47,9 +47,9 @@
                   <img style="float:left" id="imgSearch" src="./img/magnifying glass.png" width="57px"></img>
                   <h3>Browse jobs</h3>
                </div></a>
-               <ul class="">
-                  <li ng-repeat="category in categories track by $index"><a href="browse.html?{{category}}">{{category}}</a></li>
-               </ul>
+               <div class="list-group">
+                  <a ng-repeat="category in categories track by $index" href="browse.html?filterCategory='{{category}}'" class="list-group-item">{{category}}</a>
+               </div>
             </div>
 
             <div class="col-sm-4">
