@@ -2,7 +2,7 @@ var job_list = [{
    "name": "Honey Delivering job",
    "location": "Oulu",
    "category": "Deliver",
-   "date": "21/12/2016",
+   "date": new Date("2016-12-21T11:20"),
    "pay": 6,
    "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
 },
@@ -10,7 +10,7 @@ var job_list = [{
    "name": "Looking for cook",
    "location": "Oulu",
    "category": "Cook",
-   "date": "15/12/2016",
+   "date": new Date("2016/12/15 12:44"),
    "pay": 10,
    "description": "You make food me naow."
 },
@@ -18,7 +18,7 @@ var job_list = [{
    "name": "Moving job",
    "location": "Oulu",
    "category": "Deliver",
-   "date": "15/12/2016",
+   "date": new Date("2016/12/15"),
    "pay": 10,
    "description": "Help I need a person with car to move my stuff."
 },
@@ -26,7 +26,7 @@ var job_list = [{
    "name": "Dirty room",
    "location": "Oulu",
    "category": "Cleaning",
-   "date": "13/12/2016",
+   "date": new Date("2016/12/13 19:20"),
    "pay": 15,
    "description": "My mom says my room is too dirty help clean."
 },
@@ -34,7 +34,7 @@ var job_list = [{
    "name": "Looking for tutor",
    "location": "Oulu",
    "category": "Tutoring",
-   "date": "16/12/2016",
+   "date": new Date("2016/12/16"),
    "pay": 40,
    "description": "Can't seem to learn swedish need help"
 },
@@ -42,7 +42,7 @@ var job_list = [{
    "name": "Need a baby sittah",
    "location": "Oulu",
    "category": "Babysitting",
-   "date": "13/12/2016",
+   "date": new Date("2016/12/13"),
    "pay": 30,
    "description": "My babyboy requires sitting."
 }];
@@ -66,8 +66,28 @@ app.controller('repsikkaCtrl', ['$scope', function ($scope) {
    };
 }]);
 
-app.controller('indexCtrl', function($scope) {
+app.controller('indexCtrl', function($scope,$timeout) {
    $scope.jobs = job_list;
+
+   $scope.between = function(prop, value1, value2) {
+      var thisDate = new Date();
+      return function(item) {
+         var dateDiff = item[prop].getTime() - thisDate.getTime();
+         if (dateDiff > value1 && dateDiff < value2) return true;
+      };
+   };
+
+   $scope.dateDiff = function(value){
+      var thisDate = new Date();
+      var dateDiff = value.getTime() - thisDate.getTime();
+      return dateDiff;
+   }
+
+   var fireDigestEverySecond = function() {
+      $timeout(function() {fireDigestEverySecond()}, 1000);
+   };
+    
+    fireDigestEverySecond();
 });
 
 app.controller('navbarCtrl', function ($scope, $window) {

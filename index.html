@@ -29,10 +29,13 @@
       <div class="container">
       
          <div class="row">
-            <div class="col-sm-4" ng-controller>
+            <div class="col-sm-4" ng-controller="indexCtrl">
                <div class="well"><h3>Urgent Jobs</h3></div>
-               <ul class="list-group" ng-repeat="">
-                  <li class="list-group-item">Urgent Job</li>
+               <ul class="list-group">
+                  <li class="list-group-item" ng-repeat="item in jobs | filter:between('date', 0, 86400000)">
+                     <div><strong>Name: </strong>{{item.name}}</div>
+                     <div><strong>Expires in: </strong>{{dateDiff(item.date ) | date:'H:mm:ss'}}</div>
+                  </li>
                </ul>
             </div>
             
