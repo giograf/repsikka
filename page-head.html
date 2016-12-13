@@ -38,12 +38,12 @@
          <li><a ng-href="{{getNavLink('aboutus.html')}}">About us</a></li>
       </ul>
       
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" ng-controller="repsikkaCtrl">
          <!-- This is to show the logged in user's username and
               account balance. Otherwise show the log in prompt. -->
-         <li user-information>
+         <li>
          <!-- TODO: Make the login a dropdown or a popover element.... -->
-            <a href="#"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+            <a href="#"><span class="glyphicon glyphicon-user"></span>Hello, {{user.name}}</a>
          </li>
       </ul>
    </div>

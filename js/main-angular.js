@@ -59,6 +59,10 @@ app.controller('repsikkaCtrl', ['$scope', function ($scope) {
    $scope.categories = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
 }]);
 
+app.controller('indexCtrl', function($scope) {
+   $scope.jobs = job_list;
+});
+
 app.controller('navbarCtrl', function ($scope, $window) {
 
    // Function returns the link to the page if it leads not the current page, and returns link to void if the opposite is true.
