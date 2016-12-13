@@ -42,28 +42,30 @@ Initially picker has been utilized by add.html
 
 # Job Object
 
-Would it fit?<br />
-//Text is sent<br />
-"name" - text                             <br />
-//"yyyy/mm/dd" format is sent<br />
-"date_submit" - date                      <br />
-//"HH:mm" format time is sent<br />
-"time_submit" - time                      <br />
-//Text is sent<br />
-"location" - text                         <br />
-//Text is sent<br />
-"category" - select-option                <br />
-//Number is sent<br />
-"pay" - number                            <br />
-//Text is sent<br />
-"description" - textarea                  <br />
-//Text is sent<br />
-"employer_name" - hidden                  <br />
-//Text is sent<br />
-"worker_name" - hidden                    <br />
-//Text is sent<br />
-"status" - text                           <br />
-  P.S. Possible Status Values:<br />
-    * "posted<br />
-    * "applied"<br />
-    * "accepted"<br />
+Would it fit?
+```JSON
+//Text is sent
+"name" - text                             
+//"yyyy/mm/dd" format is sent
+"date_submit" - date                      
+//"HH:mm" format time is sent
+"time_submit" - time                      
+//Text is sent
+"location" - text                         
+//Text is sent
+"category" - select-option                
+//Number is sent
+"pay" - number                            
+//Text is sent
+"description" - textarea                  
+//Text is sent
+"employer_name" - hidden                  
+//Text is sent
+"worker_name" - hidden                    
+//Text is sent
+"status" - text
+```
+  P.S. Possible Status Values:
+    * "posted
+    * "applied"
+    * "accepted"
