@@ -39,58 +39,56 @@
 <div class="container">
    <!-- The "form-horizontal" class makes "form-group" class act as a row -->
    <!-- All fields except for the "category" field are required -->
-   <!-- The following fields are used:
+   <!-- The following fields are used for submitting job:
          "name" - text                             //Text is sent
-         "date_submit" - date                      //"yyyy/mm/dd" format is sent
-         "time_submit" - time                      //"HH:mm" format time is sent
+         "date" - date                             //"yyyy/mm/dd" format is sent
+         "time" - time                             //"HH:mm" format time is sent
          "location" - text                         //Text is sent
          "category" - select-option                //Text is sent
          "pay" - number                            //Number is sent
          "description" - textarea                  //Text is sent
          "employer_name" - hidden                  //Text is sent
-         "worker_name" - hidden                    //Text is sent
          "status" - text                           //Text is sent
                P.S. Possible Status Values:
                   * "posted"
                   * "applied"
                   * "accepted"
    -->
-   <form action="#" class="form-horizontal adding_form" id="adding_form" name="adding_form" novalidate>
+   <form action="account.html" class="form-horizontal adding_form" id="adding_form" name="adding_form" novalidate>
       <div class="form-group">
          <label for="name" class="col-xs-12 col-md-2">Contact Name</label>
          <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
-            <input type="text" name="name" id="name" class="form-control" required>
+            <input type="text" name="name" id="name" ng-model="name" class="form-control" required>
          </div>
          <label for="date" class="col-xs-12 col-md-push-1 col-md-3">Date</label>
          <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
             <div class="input-group">
-               <input type="date" name="date" id="date" class="form-control datepicker" required>
+               <input type="date" name="date" ng-model="date" id="date" class="form-control datepicker" required>
                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
          </div>
          <label for="location" class="col-xs-12 col-md-2">Location</label>
          <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
-            <input type="text" name="location" id="location" class="form-control" required>
+            <input type="text" name="location" id="location" ng-model="location" class="form-control" required>
          </div>
          <label for="time" class="col-xs-12 col-md-push-1 col-md-3">Time</label>
          <div class="form-group col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
-            <input type="time" id="time" name="time" class="form-control timepicker col-xs-push-1" required>
+            <input type="time" ng-model="time" id="time" name="time" class="form-control timepicker col-xs-push-1" required>
          </div>
       </div>
+
       <!--  -->
       <div class="form-group">
          <label for="category" class="col-xs-12 col-md-2">Category</label>
          <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
             <select name="category" id="category" class="form-control" ng-model="category"
                     ng-options="category for category in categories">
-               <option value="" ng-show="adding_form.category.$pristine">(select category)</option>
             </select>
          </div>
          <label for="pay" class="col-xs-12 col-md-push-1 col-md-3">Pay</label>
          <div class="form-group  col-xs-6 col-xs-push-1 col-md-push-0 col-md-2">
             <div class="input-group">
-               <input type="number" pattern="^\\$?(([1-9](\\d*|\\d{0,2}(,\\d{3})*))|0)(\\.\\d{1,2})?$"
-                      name="pay" id="pay" class="form-control" required min="5" max="200">
+               <input type="number" ng-model="pay" name="pay" id="pay" class="form-control" required min="5" max="200">
                <span class="input-group-addon"><span class="glyphicon glyphicon-eur"></span></span>
             </div>
          </div>
@@ -99,23 +97,36 @@
       <div class="form-group">
          <label class="col-xs-12" for="description">Job Description</label>
          <div class="form-group  col-xs-7 col-xs-push-1 col-md-push-0 col-md-6">
-            <textarea class="form-control" name="description" id="description" required></textarea><br>
+            <textarea class="form-control" ng-model="description" name="description" id="description" required></textarea><br>
             <p>By adding a job, you agree that you've read and accepted our <a href="">Job Posting Agreement</a>,
                and you consent to disclose contact information to the employee.</p>
          </div>
-         <input type="hidden" name="employer_name" ng-value="user.name">
-         <button type="submit" class="btn btn-primary col-xs-2 col-xs-push-2">Post</button>
+         <input type="hidden" ng-model="employer_name" name="employer_name" ng-value="user.name">
+         <button type="submit" disabled ng-disabled="adding_form.name.$invalid || adding_form.pay.$invalid || adding_form.description.$invalid ||
+         adding_form.employer_name.$invalid || adding_form.location.$invalid"
+                 class="btn btn-primary col-xs-2 col-xs-push-2">Post</button>
       </div>
    </form>
 </div>
 <script>
-   $('.datepicker').pickadate({
-      min: new Date(),
-      formatSubmit: 'yyyy/mm/dd'
-   });
-   $('.timepicker').pickatime({
-      formatLabel: 'HH:i',
-      formatSubmit: 'HH:i'
+   $( function(){
+      // Initializes and displays the JQuery styled date and time pickers
+      var date_picker = $('.datepicker').pickadate({
+         min: new Date(),
+         formatSubmit: 'yyyy/mm/dd',
+         clear: '',
+         hiddenName: true
+      });
+      var time_picker = $('.timepicker').pickatime({
+         format: 'h:i',
+         formatLabel: 'HH:i',
+         formatSubmit: 'HH:i',
+         clear: '',
+         hiddenName: true
+      });
+
+      // Escaping the flash of unstyled content
+      $('body').css('display', 'block');
    });
 </script>
 </body>

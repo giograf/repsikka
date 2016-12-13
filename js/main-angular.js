@@ -25,7 +25,12 @@ var job_list = [{
    "category": "Deliver",
    "date": new Date("2016-12-21 11:20"),
    "pay": 6,
-   "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
+   "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small" +
+   " to get its fat little body off the ground. The bee, of course, " +
+   "flies anyway because bees don't care what humans think is impossible.",
+   "employer_name" : "John Doe",
+   "worker_name" : "Risto Peltola",
+   "status": "accepted"
 },
 {
    "name": "Looking for cook",
@@ -33,7 +38,9 @@ var job_list = [{
    "category": "Cook",
    "date": new Date("2016/12/15 12:44"),
    "pay": 10,
-   "description": "You make food me naow."
+   "description": "You make food me naow.",
+   "employer_name" : "Risto Järvelä",
+   "status": "posted"
 },
 {
    "name": "Moving job",
@@ -41,7 +48,10 @@ var job_list = [{
    "category": "Deliver",
    "date": new Date("2016/12/15"),
    "pay": 10,
-   "description": "Help I need a person with car to move my stuff."
+   "description": "Help I need a person with car to move my stuff.",
+   "employer_name" : "Risto Järvelä",
+   "worker_name" : "Risto Peltola",
+   "status": "applied"
 },
 {
    "name": "Dirty room",
@@ -49,7 +59,10 @@ var job_list = [{
    "category": "Cleaning",
    "date": new Date("2016/12/13 19:20"),
    "pay": 15,
-   "description": "My mom says my room is too dirty help clean."
+   "description": "My mom says my room is too dirty help clean.",
+   "employer_name" : "Risto Järvelä",
+   "worker_name" : "John Doe",
+   "status": "accepted"
 },
 {
    "name": "Looking for tutor",
@@ -57,7 +70,10 @@ var job_list = [{
    "category": "Tutoring",
    "date": new Date("2016/12/16"),
    "pay": 40,
-   "description": "Can't seem to learn swedish need help"
+   "description": "Can't seem to learn swedish need help",
+   "employer_name" : "Risto Järvelä",
+   "worker_name" : "John Doe",
+   "status": "applied"
 },
 {
    "name": "Need a baby sittah",
@@ -65,7 +81,9 @@ var job_list = [{
    "category": "Babysitting",
    "date": new Date("2016/12/13"),
    "pay": 30,
-   "description": "My babyboy requires sitting."
+   "description": "My babyboy requires sitting.",
+   "employer_name" : "John Doe",
+   "status": "posted"
 }];
 
 var category_list = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
@@ -79,7 +97,11 @@ app.controller('repsikkaCtrl', ['$scope', function ($scope) {
          'name': 'John Doe',
          'phone': '+358 40 123 4567',
          'email': 'john.doe@email.com',
-         'balance': 20.20
+         'balance': 20.20,
+         'reviews': [{
+            'name': 'Risto Peltola',
+            'comment': 'Good employer! Fair pay.'
+         }]
       };
 
    $scope.categories = category_list;
@@ -151,6 +173,7 @@ app.controller('accountCtrl', function ($scope) {
          "id": "account"
       }
    ];
+   $scope.jobs = job_list;
 });
 
 app.directive('pageHeading', function () {

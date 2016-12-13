@@ -19,6 +19,7 @@
 
       <!-- Page-relevant CSS/JS scripts -->
       <script src="./js/main-angular.js"></script>
+      <link rel="stylesheet" href="./css/index.css"/>
       
    </html>
    <body ng-app="repsikkaApp"><!-- ng-app to activate the "main-angular.js" script. -->
@@ -86,4 +87,10 @@
       </div>
 
    </body>
+<script>
+   $( function(){
+      // Escaping the flash of unstyled content
+      $('body').css('display', 'block');
+   });
+</script>
 </html>
