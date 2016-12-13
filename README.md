@@ -32,10 +32,10 @@ Our Date/Time Picker relies on Jquery:
 To include the picker in your code:
 ```HTML
 <script src="./js/picker.js"></script>
-      <script src="./js/picker.date.js"></script>
-      <script src="./js/picker.time.js"></script>
-      <link rel="stylesheet" href="./css/default.css" />
-      <link rel="stylesheet" href="./css/default.time.css" />
-      <link rel="stylesheet" href="./css/default.date.css" />
+<script src="./js/picker.date.js"></script>
+<script src="./js/picker.time.js"></script>
+<link rel="stylesheet" href="./css/default.css" />
+<link rel="stylesheet" href="./css/default.time.css" />
+<link rel="stylesheet" href="./css/default.date.css" />
 ```
 Initially picker has been utilized by add.html
