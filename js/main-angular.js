@@ -1,8 +1,29 @@
+// A nifty function to get URL parameters
+// To use this is simple as this:
+// Getting parameters from this url: http://something.com/?parameter=value
+// and setting it to somevar
+// var somevar = getUrlParameter('parameter');
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
 var job_list = [{
    "name": "Honey Delivering job",
    "location": "Oulu",
    "category": "Deliver",
-   "date": new Date("2016-12-21T11:20"),
+   "date": new Date("2016-12-21 11:20"),
    "pay": 6,
    "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
 },
@@ -69,7 +90,8 @@ app.controller('repsikkaCtrl', ['$scope', function ($scope) {
 }]);
 
 app.controller('indexCtrl', function($scope,$timeout) {
-   $scope.jobs = job_list;
+   $scope.jobs       = job_list;
+   $scope.categories = category_list;
 
    /*
     * All this is to make sure the urgent jobs that are expiring in 24 hours (86400000 milliseconds) are shown.

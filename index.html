@@ -28,8 +28,8 @@
 
       <div class="container">
       
-         <div class="row">
-            <div class="col-sm-4" ng-controller="indexCtrl">
+         <div class="row" ng-controller="indexCtrl">
+            <div class="col-sm-4">
                <div class="well">
                   <img style="float:left" id="imgUrgent" src="./img/wait.png" width="57px"></img>
                   <h3>Urgent Jobs</h3>
@@ -43,10 +43,13 @@
             </div>
             
             <div class="col-sm-4">
-               <div class="well">
+               <a href="browse.html"><div class="well">
                   <img style="float:left" id="imgSearch" src="./img/magnifying glass.png" width="57px"></img>
                   <h3>Browse jobs</h3>
-                  </div>
+               </div></a>
+               <ul class="">
+                  <li ng-repeat="category in categories track by $index"><a href="browse.html?{{category}}">{{category}}</a></li>
+               </ul>
             </div>
 
             <div class="col-sm-4">
