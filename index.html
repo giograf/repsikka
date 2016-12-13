@@ -35,9 +35,9 @@
                   <h3>Urgent Jobs</h3>
                </div>
                <ul class="list-group">
-                  <li class="list-group-item" ng-repeat="item in jobs | filter:between('date', 0, 86400000)">
-                     <div><strong>Name: </strong>{{item.name}}</div>
-                     <div><strong>Expires in: </strong>{{dateDiff(item.date ) | date:'H:mm:ss'}}</div>
+                  <li class="list-group-item" ng-repeat="job in jobs | filter:between('date', 0, 86400000)">
+                     <div><strong>{{job.name}}</strong></div>
+                     <div><strong>Expires in: </strong>{{dateDiff(job.date) | date:'H:mm:ss'}}</div>
                   </li>
                </ul>
             </div>

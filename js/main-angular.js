@@ -133,7 +133,6 @@ app.controller('accountCtrl', function ($scope) {
 
 app.directive('pageHeading', function () {
    return { //<-- This is a must here...
-
       templateUrl: 'page-head.html'
    };
 });
