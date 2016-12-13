@@ -169,15 +169,15 @@
                   <br>
                   <div class="row person-text">
                      <div class="col-sm-3"><strong>Phone</strong></div>
-                     <div class="col-sm-9">+358-46-758-85-25</div>
+                     <div class="col-sm-9">{{user.phone}}</div>
                   </div>
                   <div class="row person-text">
                      <div class="col-sm-3"><strong>E-mail</strong></div>
-                     <div class="col-sm-9">risto.peltola@yahoo.com</div>
+                     <div class="col-sm-9">{{user.email}}</div>
                   </div>
                   <div class="row person-text">
                      <div class="col-sm-3"><strong>Balance</strong></div>
-                     <div class="col-sm-9">{{user.balance | currency}}<br> <a href="#">Add money</a></div>
+                     <div class="col-sm-9">{{user.balance | currency}}<br> <a href="#" ng-click="moreDosh(1.00)">Add money</a></div>
                   </div>
                </div>
                <div class="col-sm-8 col-sm-push-4 review_block_padding">

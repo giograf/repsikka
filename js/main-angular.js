@@ -52,11 +52,18 @@ var app = angular.module('repsikkaApp', [/* module includes */]);
 
 app.controller('repsikkaCtrl', ['$scope', function ($scope) {
    $scope.user =
-      {
+      {  /* A testuser for our prototype site :) */
          'name': 'John Doe',
+         'phone': '+358 40 123 4567',
+         'email': 'john.doe@email.com',
          'balance': 20.20
       };
+
    $scope.categories = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
+
+   $scope.moreDosh = function(moolah) {
+      $scope.user.balance += moolah;
+   };
 }]);
 
 app.controller('indexCtrl', function($scope) {
