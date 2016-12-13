@@ -13,13 +13,23 @@
       <!--<link rel="stylesheet" href="./css/bootstrap.theme.min.css" /> Optional Bootstrap theme file -->
       <script src="./libs/jquery-3.1.1.min.js"></script>
       <script src="./libs/angular.min.js"></script>
+      <script src="./libs/angular-locale_fi-fi.js"></script>
       <script src="./libs/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
       <!-- Page-relevant CSS/JS scripts -->
       <script src="./js/main-angular.js"></script>
+      <link rel="stylesheet" href="./css/add.css" />
+         <!-- Pickadate.js http://amsul.ca/pickadate.js/    Requires Jquery -->
+      <script src="./js/picker.js"></script>
+      <script src="./js/picker.date.js"></script>
+      <script src="./js/picker.time.js"></script>
+      <link rel="stylesheet" href="./css/default.css" />
+      <link rel="stylesheet" href="./css/default.time.css" />
+      <link rel="stylesheet" href="./css/default.date.css" />
 
    </html>
-   <body ng-app="repsikkaApp"><!-- ng-app to activate the "main-angular.js" script. -->
+   <body ng-app="repsikkaApp" ng-controller="repsikkaCtrl"><!-- ng-app to activate the "main-angular.js" script. -->
 
       <!-- This is the topbar of the webpage, easily accesible. Can be get using page-heading attribute.
            Remember to add the navbar classes for the navbar :) -->
@@ -27,58 +37,49 @@
       <!-- Container for padding -->
       <div class="container">
          <!-- The "form-horizontal" class makes "form-group" class act as a row -->
-         <!-- All fields except for the "categoty" field are required -->
+         <!-- All fields except for the "category" field are required -->
          <!-- The following fields are used:
                "name" - text
                "date" - date
-               "location" - select-option
-               "from"
-               "to"
+               "location" - text
+               "time" - time
                "category" - select-option
                "pay" - number
                "description" - textarea
          -->
-         <form action="#" class="form-horizontal">
+         <form action="#" class="form-horizontal adding_form" id="adding_form" name="adding_form" novalidate>
             <div class="form-group">
                <label for="name" class="col-xs-12 col-md-2">Contact Name</label>
                <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
                   <input type="text" name="name" id="name" class="form-control" required>
                </div>
-               <label for="date" class="col-xs-12 col-md-push-1 col-md-3">Starting Date</label>
+               <label for="date" class="col-xs-12 col-md-push-1 col-md-3">Date</label>
                <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
                   <div class="input-group">
-                     <input type="text" name="date" id="date" class="form-control" required>
+                     <input type="date" name="date" id="date" class="form-control datepicker" required>
                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                   </div>
                </div>
-            </div>
-            <!--  -->
-            <div class="form-group">
                <label for="location" class="col-xs-12 col-md-2">Location</label>
                <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
-                  <select name="location" id="location" class="form-control" required>
-                     <option value="">(select municipality)</option>
-                  </select>
+                  <input type="text" name="location" id="location" class="form-control" required>
                </div>
-               <label for="from" class="col-xs-12 col-md-push-1 col-md-2">From</label>
-               <div class="form-group  col-xs-6 col-xs-push-1 col-md-push-0 col-md-2">
-                  <input type="time" id="from" name="from" class="form-control col-xs-push-1" required>
-               </div>
-               <label for="to" class="col-xs-12 col-md-1">To</label>
-               <div class="form-group  col-xs-6 col-xs-push-1 col-md-push-0 col-md-2">
-                  <input type="time" id="to" name="to" class="form-control col-xs-push-1" required>
+               <label for="time" class="col-xs-12 col-md-push-1 col-md-3">Time</label>
+               <div class="form-group col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
+                  <input type="time" id="time" name="time" class="form-control timepicker col-xs-push-1" required>
                </div>
             </div>
             <!--  -->
             <div class="form-group">
                <label for="category" class="col-xs-12 col-md-2">Category</label>
                <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
-                  <select name="category" id="category" class="form-control">
-                     <option value="">(select category)</option>
+                  <select name="category" id="category" class="form-control" ng-model="category"
+                          ng-options="category for category in categories">
+                     <option value="" ng-show="adding_form.category.$pristine">(select category)</option>
                   </select>
                </div>
                <label for="pay" class="col-xs-12 col-md-push-1 col-md-3">Pay</label>
-               <div class="form-group  col-xs-8 col-xs-push-1 col-md-push-0 col-md-3">
+               <div class="form-group  col-xs-6 col-xs-push-1 col-md-push-0 col-md-2">
                   <div class="input-group">
                      <input type="number" pattern="^\\$?(([1-9](\\d*|\\d{0,2}(,\\d{3})*))|0)(\\.\\d{1,2})?$"
                             name="pay" id="pay" class="form-control" required min="5" max="200">
@@ -90,11 +91,63 @@
             <div class="form-group">
                <label class="col-xs-12" for="description">Job Description</label>
                <div class="form-group  col-xs-7 col-xs-push-1 col-md-push-0 col-md-6">
-                  <textarea class="form-control" name="description" id="description" required></textarea>
+                  <textarea class="form-control" name="description" id="description" required></textarea><br>
+                  <p>By adding a job, you agree that you've read and accepted our <a href="">Job Posting Agreement</a>,
+                     and you consent to disclose contact information to the employee.</p>
                </div>
                <button type="submit" class="btn btn-primary col-xs-2 col-xs-push-2">Post   </button>
             </div>
          </form>
       </div>
+   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+         <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Collapsible Group Item #1
+               </a>
+            </h4>
+         </div>
+         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+         </div>
+      </div>
+      <div class="panel panel-default">
+         <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Collapsible Group Item #2
+               </a>
+            </h4>
+         </div>
+         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+         </div>
+      </div>
+      <div class="panel panel-default">
+         <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Collapsible Group Item #3
+               </a>
+            </h4>
+         </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+         </div>
+      </div>
+   </div>
+   <script>
+      $('.datepicker').pickadate({
+         min: new Date()
+      });
+      $('.timepicker').pickatime();
+   </script>
    </body>
 </html>
