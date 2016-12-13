@@ -1,53 +1,94 @@
-
 /* Justify and center the pills */
 .pill {
-    margin-top: 5px;
-    width: 33%;
-    text-align: center;
+   margin-top: 5px;
+   width: 33%;
+   text-align: center;
 }
 
 /* Alligning user icon with the user information on the right */
 .person_icon {
-    margin-top: 5px;
+   margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+   .person_icon {
+      padding-left: 30%;
+   }
 }
 
 /* Centering the legend and moving it away from the pills */
 .jobs_legends {
-    padding-top: 35px;
-    text-align: center;
+   padding-top: 35px;
+   text-align: center;
 }
 
 /* Styling for the job entry both for employer and employee pills */
-.job_object{
-    padding: 15px 5px 15px 5px;
-    margin-top: 15px;
-    border: 2px ridge rgb(204, 208, 215);
-    border-radius: 4px;
+.job_object {
+   padding: 15px 5px 15px 5px;
+   margin-top: 15px;
+   border: 2px ridge rgb(204, 208, 215);
+   border-radius: 4px;
+}
+
+.job_object_xs {
+   margin: auto 12px auto 12px;
+   padding-left: 10px;
+   padding-right: 10px;
+}
+
+.job_now_border {
+   border: 2px ridge rgb(237, 33, 56);
+}
+
+accordion_inner_tab_name {
+   margin: 5px auto 25px auto;
 }
 
 /* User description properties */
-.person-text{
-    font-size: 15px;
-    padding-bottom: 5px;
+.person-text {
+   font-size: 15px;
+   padding-bottom: 5px;
 }
 
 /* User name has bigger font */
 .name {
-    font-size: 17px;
+   font-size: 17px;
 }
 
 /* Make reviews stay further from the user infomation */
 .user_reviews {
-    padding-top: 25px;
+   padding-top: 25px;
 }
 
 /* Make the account pill content stay further from the navigation pills */
-.account_pill_content{
-    margin-top: 15px;
+.account_pill_content {
+   margin-top: 15px;
 }
 
-/*  */
+/* Stick review block out from the rest of the content */
 .review_block_padding {
-    padding-top: 40px;
-    padding-bottom: -10px;
+   padding-top: 40px;
+   padding-bottom: -10px;
+}
+
+@media screen and (max-width: 768px) {
+   .review_block_padding {
+      padding-top: 10px;
+      padding-bottom: -5px;
+   }
+}
+
+/* Review Media Well */
+@media screen and (max-width: 768px) {
+   .margin-media-xs {
+      margin: 8px 12px auto 12px;
+   }
+}
+
+/* Slowing down the carousel */
+[id="account_carousel"] .carousel-inner > .item {
+   -webkit-transition-duration: 0.35s;
+   -moz-transition-duration: 0.35s;
+   -o-transition-duration: 0.35s;
+   transition-duration: 0.35s;
 }

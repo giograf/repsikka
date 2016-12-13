@@ -9,3 +9,12 @@
     padding: 35px;
     margin-bottom: 35px;
 }
+
+/* Override Bootstrap's rule, needed for the date-picker, or background is grayish*/
+.form-control[readonly]{
+    background-color: white;
+}
+
+textarea{
+    resize: vertical;
+}
