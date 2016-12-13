@@ -1,3 +1,52 @@
+var job_list = [{
+   "name": "Honey Delivering job",
+   "location": "Oulu",
+   "category": "Deliver",
+   "date": "21/12/2016",
+   "pay": 6,
+   "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
+},
+{
+   "name": "Looking for cook",
+   "location": "Oulu",
+   "category": "Cook",
+   "date": "15/12/2016",
+   "pay": 10,
+   "description": "You make food me naow."
+},
+{
+   "name": "Moving job",
+   "location": "Oulu",
+   "category": "Deliver",
+   "date": "15/12/2016",
+   "pay": 10,
+   "description": "Help I need a person with car to move my stuff."
+},
+{
+   "name": "Dirty room",
+   "location": "Oulu",
+   "category": "Cleaning",
+   "date": "13/12/2016",
+   "pay": 15,
+   "description": "My mom says my room is too dirty help clean."
+},
+{
+   "name": "Looking for tutor",
+   "location": "Oulu",
+   "category": "Tutoring",
+   "date": "16/12/2016",
+   "pay": 40,
+   "description": "Can't seem to learn swedish need help"
+},
+{
+   "name": "Need a baby sittah",
+   "location": "Oulu",
+   "category": "Babysitting",
+   "date": "13/12/2016",
+   "pay": 30,
+   "description": "My babyboy requires sitting."
+}];
+
 // To make a code clearer, all elements of the application to be called by the "app" variable.
 var app = angular.module('repsikkaApp', [/* module includes */]);
 
@@ -52,53 +101,7 @@ app.directive('pageHeading', function () {
 
 app.controller("filterCtrl", function ($scope) {
 
-   $scope.jobs = [{
-      "name": "Honey Delivering job",
-      "location": "Oulu",
-      "category": "Deliver",
-      "date": "21/12/2016",
-      "pay": "6€",
-      "descreption": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
-   }, {
-      "name": "Looking for cook",
-      "location": "Oulu",
-      "category": "Cook",
-      "date": "15/12/2016",
-      "pay": "10€",
-      "descreption": "You make food me naow."
-   },
-      {
-         "name": "Moving job",
-         "location": "Oulu",
-         "category": "Deliver",
-         "date": "15/12/2016",
-         "pay": "10€",
-         "descreption": "Help I need a person with car to move my stuff."
-      },
-      {
-         "name": "Dirty room",
-         "location": "Oulu",
-         "category": "Cleaning",
-         "date": "13/12/2016",
-         "pay": "15€",
-         "descreption": "My mom says my room is too dirty help clean."
-      },
-      {
-         "name": "Looking for tutor",
-         "location": "Oulu",
-         "category": "Tutoring",
-         "date": "16/12/2016",
-         "pay": "40€",
-         "descreption": "Can't seem to learn swedish need help"
-      },
-      {
-         "name": "Need a baby sittah",
-         "location": "Oulu",
-         "category": "Babysitting",
-         "date": "13/12/2016",
-         "pay": "30€",
-         "descreption": "My babyboy requires sitting."
-      }];
+   $scope.jobs = job_list;
 
    $scope.FilteringArray = {};
    $scope.index = 0;
