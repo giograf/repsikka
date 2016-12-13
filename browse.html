@@ -43,7 +43,7 @@
           <div class="form-group">
             <div class="control-label col-sm-2"></div>
           <div class="col-sm-10">
-              <ul class="list-group" ng-repeat="job in jobs | filter:categoryFilter">
+              <ul class="list-group" ng-repeat="job in jobs" ng-show="categoryFilter(job)">
                 <li class="list-group-item" id="{{$index}}" data-toggle="modal" data-target="#Module{{$index}}">{{job.name}}</li>
                 <!-- Big as Modal code that is required-->
                 <div class="modal fade" id="Module{{$index}}" role="dialog">
