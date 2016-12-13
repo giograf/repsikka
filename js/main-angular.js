@@ -47,6 +47,8 @@ var job_list = [{
    "description": "My babyboy requires sitting."
 }];
 
+var category_list = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
+
 // To make a code clearer, all elements of the application to be called by the "app" variable.
 var app = angular.module('repsikkaApp', [/* module includes */]);
 
@@ -59,7 +61,7 @@ app.controller('repsikkaCtrl', ['$scope', function ($scope) {
          'balance': 20.20
       };
 
-   $scope.categories = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
+   $scope.categories = category_list;
 
    $scope.moreDosh = function(moolah) {
       $scope.user.balance += moolah;
@@ -69,6 +71,10 @@ app.controller('repsikkaCtrl', ['$scope', function ($scope) {
 app.controller('indexCtrl', function($scope,$timeout) {
    $scope.jobs = job_list;
 
+   /*
+    * All this is to make sure the urgent jobs that are expiring in 24 hours (86400000 milliseconds) are shown.
+    * Also the jobs that are expired are also not shown.
+    */
    $scope.between = function(prop, value1, value2) {
       var thisDate = new Date();
       return function(item) {
@@ -77,12 +83,14 @@ app.controller('indexCtrl', function($scope,$timeout) {
       };
    };
 
+   /* Returning the millisecond value of the date difference. */
    $scope.dateDiff = function(value){
       var thisDate = new Date();
       var dateDiff = value.getTime() - thisDate.getTime();
       return dateDiff;
    }
 
+   /* A simple thing to make sure the scope is refreshed every second. */
    var fireDigestEverySecond = function() {
       $timeout(function() {fireDigestEverySecond()}, 1000);
    };
@@ -95,7 +103,7 @@ app.controller('navbarCtrl', function ($scope, $window) {
    // Function returns the link to the page if it leads not the current page, and returns link to void if the opposite is true.
    $scope.getNavLink = function (link) {
       if ("/" + link == $window.location.pathname) {
-         return "javascript:void(do_something())"
+         return "#"
       }
       else {
          return link
