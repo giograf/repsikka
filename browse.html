@@ -60,7 +60,7 @@
                       <div class="modalinfo">
                         Payment: {{job.pay}}<br>
                         Location: {{job.location}}<br>
-                        Date: {{job.date}}
+                        Date: {{job.date | date:'d.M.yyyy H:mm'}}
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
