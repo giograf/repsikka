@@ -26,7 +26,7 @@
 .job_object {
    padding: 15px 5px 15px 5px;
    margin-top: 15px;
-   border: 2px ridge rgb(204, 208, 215);
+   border: 2px ridge rgb(215,218,219);
    border-radius: 4px;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .job_now_border {
-   border: 2px ridge rgb(237, 33, 56);
+   border: 2px ridge rgb(252,67,73);
 }
 
 accordion_inner_tab_name {

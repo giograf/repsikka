@@ -1,0 +1,35 @@
+/* Default Color Scheme */
+/* Global CSS, Affects each file */
+
+/*
+   rgb(44,62,80) - dark
+   rgb(252,67,73) - red
+   rgb(215,218,219) - gray
+   rgb(109,188,219) - blue
+   rgb(255,255,255) - white
+*/
+
+body {
+   color: rgb(44,62,80);
+}
+a {
+   color: rgb(109,188,219);
+}
+.btn-primary, .btn-primary:focus, .btn-primary:visited, .btn-primary:active, .btn-primary:hover, .btn-primary:link, .btn-primary:enabled{
+   background-color: rgb(109,188,219) !important;
+   border-color: rgb(109,188,219) !important;
+}
+.form-control:focus{
+   border-color: #66afe9;
+   outline: 0;
+   -webkit-box-shadow: inset 0 1px 1px rgb(109,188,219),0 0 4px rgb(109,188,219) !important;
+   box-shadow: inset 0 1px 1px rgb(109,188,219),0 0 4px rgb(109,188,219) !important;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+   background-color: rgb(109,188,219) !important;
+   border-color: rgb(109,188,219) !important;
+}
+
+.well {
+   background-color: rgb(215,218,219);
+}
