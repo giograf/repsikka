@@ -43,7 +43,7 @@ Initially picker has been utilized by add.html
 # Job Object
 
 Would it fit?
-```JSON
+```javascript
 //Text is sent
 "name" - text                             
 //"yyyy/mm/dd" format is sent
