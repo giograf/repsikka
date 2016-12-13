@@ -23,3 +23,19 @@ The navbar can be inserted to any page easily by _at least_ doing the following:
 ```HTML
 <div page-heading class="navbar navbar-default"></div>
 ```
+
+# About Date/Time Picker
+Our Date/Time Picker relies on Jquery:
+```HTML
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+```
+To include the picker in your code:
+```HTML
+<script src="./js/picker.js"></script>
+      <script src="./js/picker.date.js"></script>
+      <script src="./js/picker.time.js"></script>
+      <link rel="stylesheet" href="./css/default.css" />
+      <link rel="stylesheet" href="./css/default.time.css" />
+      <link rel="stylesheet" href="./css/default.date.css" />
+```
+Initially picker has been utilized by add.html
