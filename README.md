@@ -39,3 +39,22 @@ To include the picker in your code:
 <link rel="stylesheet" href="./css/default.date.css" />
 ```
 Initially picker has been utilized by add.html
+
+# Job Object
+
+Would it fit?
+
+"name" - text                             //Text is sent
+"date_submit" - date                      //"yyyy/mm/dd" format is sent
+"time_submit" - time                      //"HH:mm" format time is sent
+"location" - text                         //Text is sent
+"category" - select-option                //Text is sent
+"pay" - number                            //Number is sent
+"description" - textarea                  //Text is sent
+"employer_name" - hidden                  //Text is sent
+"worker_name" - hidden                    //Text is sent
+"status" - text                           //Text is sent
+  P.S. Possible Status Values:
+    * "posted
+    * "applied"
+    * "accepted"
