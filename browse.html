@@ -1,96 +1,103 @@
 <!DOCTYPE html>
 <html>
-   <head>
+<head>
 
-      <title>Repsikka</title>
+   <title>Repsikka</title>
 
-      <!-- Metadata -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Metadata -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- CSS/JS Libraries -->
-      <link rel="stylesheet" href="./css/bootstrap.min.css" />
-      <link rel="stylesheet" href="./css/browse.css"/>
-      <!--<link rel="stylesheet" href="./css/bootstrap.theme.min.css" /> Optional Bootstrap theme file -->
-      <script src="./libs/jquery-3.1.1.min.js"></script>
-      <script src="./libs/angular.min.js"></script>
-      <script src="./libs/angular-animate.js"></script>
-      <script src="./libs/angular-locale_fi-fi.js"></script>
-      <script src="./libs/bootstrap.min.js"></script>
+   <!-- CSS/JS Libraries -->
+   <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+   <link rel="stylesheet" href="./css/browse.css"/>
+   <!--<link rel="stylesheet" href="./css/bootstrap.theme.min.css" /> Optional Bootstrap theme file -->
+   <script src="./libs/jquery-3.1.1.min.js"></script>
+   <script src="./libs/angular.min.js"></script>
+   <script src="./libs/angular-animate.js"></script>
+   <script src="./libs/angular-locale_fi-fi.js"></script>
+   <script src="./libs/bootstrap.min.js"></script>
 
-      <!-- Page-relevant CSS/JS scripts -->
-      <script src="./js/main-angular.js"></script>
-      <link rel="stylesheet" href="./css/index.css"/>
-      
-   </html>
-   <body ng-app="repsikkaApp"><!-- ng-app to activate the "main-angular.js" script. -->
+   <!-- Page-relevant CSS/JS scripts -->
+   <script src="./js/main-angular.js"></script>
+   <link rel="stylesheet" href="./css/index.css"/>
 
-      <!-- This is the topbar of the webpage, easily accesible. Can be get using page-heading attribute.
-           Remember to add the navbar classes for the navbar :) -->
-      <div page-heading class="navbar navbar-default"></div>
+</html>
+<body ng-app="repsikkaApp" ng-controller="repsikkaCtrl"><!-- ng-app to activate the "main-angular.js" script. -->
 
-      <div class="container" ng-controller="filterCtrl">
-        <h3>Search Filters</h3>
-        <form class="form-horizontal">
-          <div class="form-group col-sm-2">
-            <h5>Categories</h5>
-            <label><input type="checkbox" ng-model="FilteringArray['Deliver']" /> Delivery</label><br>
-            <label><input type="checkbox" ng-model="FilteringArray['Cook']" /> Cooking</label><br>
-            <label><input type="checkbox" ng-model="FilteringArray['Cleaning']" /> Cleaning</label><br>
-            <label><input type="checkbox" ng-model="FilteringArray['Tutoring']" /> Tutoring</label><br>
-            <label><input type="checkbox" ng-model="FilteringArray['Babysitting']" /> Babysitting</label><br>
-            <div class="col-sm-10">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="control-label col-sm-2"></div>
-          <div class="col-sm-10">
-              <ul class="list-group joblist" ng-repeat="job in jobs" ng-show="categoryFilter(job)">
-                <li class="list-group-item" id="{{$index}}" data-toggle="modal" data-target="#Module{{$index}}">{{job.name}}</li>
-                <!-- Big as Modal code that is required-->
-                <div class="modal fade" id="Module{{$index}}" role="dialog">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">{{job.name}}</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div>
-                          <p>{{job.description}}</p>
-                      </div>
-                      <div class="modalinfo">
-                        Payment: {{job.pay}}<br>
-                        Location: {{job.location}}<br>
-                        Date: {{job.date | date:'d.M.yyyy H:mm'}}
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="apply(job.id)">Apply</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Big as Modal code that is required-->
-              </ul>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10"></div>
-              <div class="col-sm-10">
-                <p ng-show="jobApply"><b>Applied to:</b> {{applied.name}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-            </div>
-          </div>
-        </form>
+<!-- This is the topbar of the webpage, easily accesible. Can be get using page-heading attribute.
+     Remember to add the navbar classes for the navbar :) -->
+<div page-heading class="navbar navbar-default"></div>
+
+<div class="container" ng-controller="filterCtrl">
+   <h3>Search Filters</h3>
+   <form id="browse_form" action="account.html" class="form-horizontal">
+      <div class="form-group col-sm-2">
+         <h5>Categories</h5>
+         <label><input type="checkbox" ng-model="FilteringArray['Deliver']"/> Delivery</label><br>
+         <label><input type="checkbox" ng-model="FilteringArray['Cook']"/> Cooking</label><br>
+         <label><input type="checkbox" ng-model="FilteringArray['Cleaning']"/> Cleaning</label><br>
+         <label><input type="checkbox" ng-model="FilteringArray['Tutoring']"/> Tutoring</label><br>
+         <label><input type="checkbox" ng-model="FilteringArray['Babysitting']"/> Babysitting</label><br>
+         <div class="col-sm-10">
+         </div>
       </div>
-
-   </body>
+      <div class="form-group">
+         <div class="control-label col-sm-2"></div>
+         <div class="col-sm-10">
+            <ul class="list-group joblist" ng-repeat="job in jobs" ng-show="categoryFilter(job)">
+               <li class="list-group-item" id="{{$index}}" data-toggle="modal" data-target="#Module{{$index}}">
+                  {{job.name}}
+               </li>
+               <!-- Big as Modal code that is required-->
+               <div class="modal fade" id="Module{{$index}}" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           <h2 class="modal-title">{{job.name}}</h2>
+                        </div>
+                        <div class="modal-body">
+                           <div>
+                              <p>{{job.description}}</p>
+                           </div>
+                           <div class="modalinfo">
+                              <strong>Payment:</strong> {{job.pay | currency}}<br>
+                              <strong>Location:</strong> {{job.location}}<br>
+                              <strong>Date:</strong> {{job.date | date:'d.M.yyyy H:mm'}}
+                           </div>
+                           <div class="modal-footer">
+                              <button class="btn btn-primary btn-lg center-block" style="width: 100px"
+                                      ng-click="setEmployeeJob(job.name, job.employer_name)">Apply
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Big as Modal code that is required-->
+            </ul>
+         </div>
+      </div>
+      <div class="form-group">
+         <div class="col-sm-offset-2 col-sm-10"></div>
+         <div class="col-sm-10">
+            <p ng-show="jobApply"><b>Applied to:</b> {{applied.name}}</p>
+         </div>
+      </div>
+<div class="form-group">
+   <div class="col-sm-offset-2 col-sm-10">
+   </div>
+</div>
+<input type="hidden" ng-value="job_name" name="name">
+<input type="hidden" ng-value="job_employer" name="employer_name">
+<input type="hidden" ng-value="user.name" name="worker_name">
+<input type="hidden" value="applied" name="status">
+</form>
+</div>
+</div>
+</body>
 <script>
-   $( function(){
+   $(function () {
       // Escaping the flash of unstyled content
       $('body').css('display', 'block');
    });
