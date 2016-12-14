@@ -102,6 +102,7 @@
                and you consent to disclose contact information to the employee.</p>
          </div>
          <input type="hidden" ng-model="employer_name" name="employer_name" ng-value="user.name">
+         <input type="hidden" name="status" value="posted">
          <button type="submit" disabled ng-disabled="adding_form.name.$invalid || adding_form.pay.$invalid || adding_form.description.$invalid ||
          adding_form.employer_name.$invalid || adding_form.location.$invalid"
                  class="btn btn-primary col-xs-2 col-xs-push-2">Post</button>
@@ -120,7 +121,7 @@
       var time_picker = $('.timepicker').pickatime({
          format: 'h:i',
          formatLabel: 'HH:i',
-         formatSubmit: 'HH:i',
+         formatSubmit: "HH i",
          clear: '',
          hiddenName: true
       });

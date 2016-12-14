@@ -39,7 +39,7 @@ var job_list = [{
    "name": "Dirty room",
    "location": "Oulu",
    "category": "Cleaning",
-   "date": new Date("2016/12/13 19:20"),
+   "date": new Date("2016/12/18 19:20"),
    "pay": 15,
    "description": "My mom says my room is too dirty help clean.",
    "employer_name" : "Risto Järvelä",
@@ -50,7 +50,7 @@ var job_list = [{
    "name": "Looking for tutor",
    "location": "Oulu",
    "category": "Tutoring",
-   "date": new Date("2016/12/16"),
+   "date": new Date("2016/12/17"),
    "pay": 40,
    "description": "Can't seem to learn swedish need help",
    "employer_name" : "Risto Järvelä",
@@ -61,13 +61,14 @@ var job_list = [{
    "name": "Need a baby sittah",
    "location": "Oulu",
    "category": "Babysitting",
-   "date": new Date("2016/12/13"),
+   "date": new Date("2016/12/16"),
    "pay": 30,
    "description": "My babyboy requires sitting.",
    "employer_name" : "John Doe",
    "status": "posted"
 }];
 
+// List of possible job categories, initialized at repsikkaCtrl, used directly at add.html
 var category_list = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
 
 // To make a code clearer, all elements of the application to be called by the "app" variable.
@@ -114,7 +115,7 @@ app.controller('indexCtrl', function($scope,$timeout) {
       var thisDate = new Date();
       var dateDiff = value.getTime() - thisDate.getTime();
       return dateDiff;
-   }
+   };
 
    /* A simple thing to make sure the scope is refreshed every second. */
    var fireDigestEverySecond = function() {
@@ -136,14 +137,30 @@ app.controller('navbarCtrl', function ($scope, $window) {
       }
    };
 });
-app.controller('accountCtrl', function ($scope) {
+
+app.config(['$locationProvider', function ($locationProvider) {
+
+   if (window.history && window.history.pushState) {
+      $locationProvider.html5Mode({
+         enabled: true,
+         requireBase: true,
+         rewriteLinks: false
+      });
+   }
+   else {
+      $locationProvider.html5Mode(false);
+   }
+}]);
+
+app.controller('accountCtrl', function ($scope, $location) {
    /* The following controller fills out the Account page. */
-   $scope.pill_content = [{
+   $scope.pill_content = [
+      {
       "pill_name": "For Worker",
       "id": "employee",
       "tab_name_1": "Current Job I Have to Do",
       "tab_name_2": "Jobs Applied"
-   },
+      },
       {
          "pill_name": "For Employer",
          "id": "employer",
@@ -156,6 +173,32 @@ app.controller('accountCtrl', function ($scope) {
       }
    ];
    $scope.jobs = job_list;
+   if ( $location.search().hasOwnProperty( 'employer_name' ) ) {
+      // Compose datetime out of date and time supplied
+      $scope.temporary_time = $location.search()['time'];
+      $scope.temporary_hours = Number($scope.temporary_time.substr(0,2)) ;
+      $scope.temporary_minutes = Number($scope.temporary_time.substr(2,3)) ;
+      $scope.datetime = new Date($location.search()['date']);
+      $scope.datetime.setHours($scope.temporary_hours);
+      $scope.datetime.setMinutes($scope.temporary_minutes);
+
+      console.log($scope.temporary_hours);
+      console.log($scope.temporary_time.substr(2,3));
+      console.log($scope.temporary_time);
+      $scope.newJob = {
+         'name': $location.search()['name'],
+         'location': $location.search()['location'],
+         'category': $location.search()['category'],
+         'date': $scope.datetime,
+         'pay': $location.search()['pay'],
+         'description': $location.search()['description'],
+         'employer_name': $location.search()['employer_name'],
+         'worker_name': $location.search()['worker_name'],
+         'status': $location.search()['status'],
+         'newJob': true
+      };
+      job_list.push($scope.newJob);
+   }
 });
 
 app.directive('pageHeading', function () {
