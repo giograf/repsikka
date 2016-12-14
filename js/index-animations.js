@@ -47,7 +47,7 @@ function carousel() {
       // this redos the whole function over and over again to infinity.
       timer = setTimeout(function() {
          navigate(1);
-      },5000);
+      },9000);
    }
    next.addEventListener('click', function(event) {
       clearTimeout(timer);
@@ -60,14 +60,16 @@ function carousel() {
    navigate(0);
 };
 
+// This shake function breaks a lot. There should be an easier way to differentiate
+// elements having the same class while they're doing the same function.
 function shake(well) {
    icon = well.querySelector('.shake-img');
 
-   if (! icon.classList.contains('animate')){
+   if (! icon.classList.contains('animate')) {
       icon.classList.add('animate');
 
       setTimeout(function() {
-         icon.classList.remove('animate'); 
+         icon.classList.remove('animate');
       },380);
    }
 };
