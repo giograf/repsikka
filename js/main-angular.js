@@ -7,7 +7,12 @@ var job_list = [{
    "category": "Deliver",
    "date": new Date("2016-12-21 11:20"),
    "pay": 6,
-   "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
+   "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small" +
+   " to get its fat little body off the ground. The bee, of course, " +
+   "flies anyway because bees don't care what humans think is impossible.",
+   "employer_name" : "John Doe",
+   "worker_name" : "Risto Peltola",
+   "status": "accepted"
 },
 {
    "name": "Looking for cook",
@@ -15,7 +20,9 @@ var job_list = [{
    "category": "Cook",
    "date": new Date("2016/12/15 12:44"),
    "pay": 10,
-   "description": "You make food me naow."
+   "description": "You make food me naow.",
+   "employer_name" : "Risto Järvelä",
+   "status": "posted"
 },
 {
    "name": "Moving job",
@@ -23,33 +30,45 @@ var job_list = [{
    "category": "Deliver",
    "date": new Date("2016/12/15"),
    "pay": 10,
-   "description": "Help I need a person with car to move my stuff."
+   "description": "Help I need a person with car to move my stuff.",
+   "employer_name" : "Risto Järvelä",
+   "worker_name" : "Risto Peltola",
+   "status": "applied"
 },
 {
    "name": "Dirty room",
    "location": "Oulu",
    "category": "Cleaning",
-   "date": new Date("2016/12/13 19:20"),
+   "date": new Date("2016/12/18 19:20"),
    "pay": 15,
-   "description": "My mom says my room is too dirty help clean."
+   "description": "My mom says my room is too dirty help clean.",
+   "employer_name" : "Risto Järvelä",
+   "worker_name" : "John Doe",
+   "status": "accepted"
 },
 {
    "name": "Looking for tutor",
    "location": "Oulu",
    "category": "Tutoring",
-   "date": new Date("2016/12/16"),
+   "date": new Date("2016/12/17"),
    "pay": 40,
-   "description": "Can't seem to learn swedish need help"
+   "description": "Can't seem to learn swedish need help",
+   "employer_name" : "Risto Järvelä",
+   "worker_name" : "John Doe",
+   "status": "applied"
 },
 {
    "name": "Need a baby sittah",
    "location": "Oulu",
    "category": "Babysitting",
-   "date": new Date("2016/12/13"),
+   "date": new Date("2016/12/16"),
    "pay": 30,
-   "description": "My babyboy requires sitting."
+   "description": "My babyboy requires sitting.",
+   "employer_name" : "John Doe",
+   "status": "posted"
 }];
 
+// List of possible job categories, initialized at repsikkaCtrl, used directly at add.html
 var category_list = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
 
 // To make a code clearer, all elements of the application to be called by the "app" variable.
@@ -61,7 +80,11 @@ app.controller('repsikkaCtrl', ['$scope', function ($scope) {
          'name': 'John Doe',
          'phone': '+358 40 123 4567',
          'email': 'john.doe@email.com',
-         'balance': 20.20
+         'balance': 20.20,
+         'reviews': [{
+            'name': 'Risto Peltola',
+            'comment': 'Good employer! Fair pay.'
+         }]
       };
 
    $scope.categories = category_list;
@@ -92,7 +115,7 @@ app.controller('indexCtrl', function($scope,$timeout) {
       var thisDate = new Date();
       var dateDiff = value.getTime() - thisDate.getTime();
       return dateDiff;
-   }
+   };
 
    /* A simple thing to make sure the scope is refreshed every second. */
    var fireDigestEverySecond = function() {
@@ -114,14 +137,30 @@ app.controller('navbarCtrl', function ($scope, $window) {
       }
    };
 });
-app.controller('accountCtrl', function ($scope) {
+
+app.config(['$locationProvider', function ($locationProvider) {
+
+   if (window.history && window.history.pushState) {
+      $locationProvider.html5Mode({
+         enabled: true,
+         requireBase: true,
+         rewriteLinks: false
+      });
+   }
+   else {
+      $locationProvider.html5Mode(false);
+   }
+}]);
+
+app.controller('accountCtrl', function ($scope, $location) {
    /* The following controller fills out the Account page. */
-   $scope.pill_content = [{
+   $scope.pill_content = [
+      {
       "pill_name": "For Worker",
       "id": "employee",
       "tab_name_1": "Current Job I Have to Do",
       "tab_name_2": "Jobs Applied"
-   },
+      },
       {
          "pill_name": "For Employer",
          "id": "employer",
@@ -133,6 +172,33 @@ app.controller('accountCtrl', function ($scope) {
          "id": "account"
       }
    ];
+   $scope.jobs = job_list;
+   if ( $location.search().hasOwnProperty( 'employer_name' ) ) {
+      // Compose datetime out of date and time supplied
+      $scope.temporary_time = $location.search()['time'];
+      $scope.temporary_hours = Number($scope.temporary_time.substr(0,2)) ;
+      $scope.temporary_minutes = Number($scope.temporary_time.substr(2,3)) ;
+      $scope.datetime = new Date($location.search()['date']);
+      $scope.datetime.setHours($scope.temporary_hours);
+      $scope.datetime.setMinutes($scope.temporary_minutes);
+
+      console.log($scope.temporary_hours);
+      console.log($scope.temporary_time.substr(2,3));
+      console.log($scope.temporary_time);
+      $scope.newJob = {
+         'name': $location.search()['name'],
+         'location': $location.search()['location'],
+         'category': $location.search()['category'],
+         'date': $scope.datetime,
+         'pay': $location.search()['pay'],
+         'description': $location.search()['description'],
+         'employer_name': $location.search()['employer_name'],
+         'worker_name': $location.search()['worker_name'],
+         'status': $location.search()['status'],
+         'newJob': true
+      };
+      job_list.push($scope.newJob);
+   }
 });
 
 app.directive('pageHeading', function () {

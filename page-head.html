@@ -7,7 +7,13 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" ng-href="{{getNavLink('index.html')}}">Repsikka</a>
+      <a class="navbar-brand" ng-href="{{getNavLink('index.html')}}"> Repsikka
+         <div class="logo_image_block" style="display: inline-block">
+         <img class="logo_image" src="img/car.png" height="32" alt="car">
+         <img class="logo_image" src="img/stove.png" height="32" alt="stove">
+         <img class="logo_image" src="img/mop.png" height="32" alt="mop">
+         </div>
+      </a>
    </div>
 
    <div class="collapse navbar-collapse"> 
@@ -34,9 +40,9 @@
 
       <ul class="nav navbar-nav navbar-left">
          <li><a ng-href="{{getNavLink('index.html')}}">Home</a></li>
-         <li><a ng-href="{{getNavLink('browse.html')}}">Browse jobs</a></li>
-         <li><a ng-href="{{getNavLink('add.html')}}">Post a job</a></li>
-         <li><a ng-href="{{getNavLink('aboutus.html')}}">About us</a></li>
+         <li><a ng-href="{{getNavLink('browse.html')}}">Browse Jobs</a></li>
+         <li><a ng-href="{{getNavLink('add.html')}}">Post Job</a></li>
+         <li><a ng-href="{{getNavLink('aboutus.html')}}">About Us</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right" ng-controller="repsikkaCtrl">
