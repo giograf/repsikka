@@ -21,6 +21,8 @@
 
    <!-- Page-relevant CSS/JS scripts -->
    <script src="./js/main-angular.js"></script>
+   <script>
+   </script>
    <link rel="stylesheet" href="./css/account.css"/>
    <link rel="stylesheet" href="./css/index.css"/>
 </html>
@@ -31,9 +33,9 @@
         Remember to add the navbar classes for the navbar :) -->
    <div page-heading class="navbar navbar-default"></div>
 
-   <div class="container"><div class="row"><div class="col-xs-12 col-md-6 col-md-push-3">
+   <div class="container" ng-if="newJob.status.length != 0 && newJob.status != undefined "><div class="row"><div class="col-xs-12 col-md-6 col-md-push-3">
       <div class="alert alert-success alert-dismissible" role="alert">
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <button type="button" class="close" onclick="$(this).parent().remove()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
          <strong>Success!</strong>
          <span ng-if="newJob.status == 'posted'">
             Your job offer "{{newJob.name}}" has been posted!
@@ -52,10 +54,10 @@
       <!-- Navigation for Pills -->
       <div class="row" data-name="account_pills">
          <ul class="nav nav-pills col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
-            <li ng-class="{active: $first && newJob.status != 'posted', active: $index == 1 && newJob.status == 'posted'}" class="pill" ng-repeat="content in pill_content">
+            <li ng-class="{active: $first}"
+                class="pill" ng-repeat="content in pill_content">
                <a data-toggle="tab" ng-href="{{'#' + content.id}}" data-slide-to="{{$index}}"
-                  data-target="#account_carousel"
-               >{{content.pill_name}}</a>
+                  data-target="#account_carousel">{{content.pill_name}}</a>
             </li>
          </ul>
       </div>
@@ -66,7 +68,7 @@
 
          <!-- Employee and Employer's Pills -->
 
-         <div role="tabpanel" class="tab-pane col-sm-12 item" ng-class="{active: $first && newJob.status != 'posted', active: $index == 1 && newJob.status == 'posted'}" id="{{content.id}}"
+         <div role="tabpanel" class="tab-pane col-sm-12 item" ng-class="{active: $first}" id="{{content.id}}"
               ng-repeat="content in pill_content | limitTo : 2">
             <div class="row">
                <fieldset class="col-sm-6">
@@ -378,6 +380,10 @@
    $(function () {
       // Escaping the flash of unstyled content
       $('body').css('display', 'block');
+      /* Transition for alert removal */
+      var dismissAlert = function (object){
+         object.parentNode.css('display', 'none');
+      };
    });
 </script>
 </html>

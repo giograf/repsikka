@@ -182,9 +182,6 @@ app.controller('accountCtrl', function ($scope, $location) {
       $scope.datetime.setHours($scope.temporary_hours);
       $scope.datetime.setMinutes($scope.temporary_minutes);
 
-      console.log($scope.temporary_hours);
-      console.log($scope.temporary_time.substr(2,3));
-      console.log($scope.temporary_time);
       $scope.newJob = {
          'name': $location.search()['name'],
          'location': $location.search()['location'],
