@@ -207,9 +207,10 @@ app.controller('accountCtrl', function ($scope, $location) {
       // get the array and push the worker_name to it
       $scope.jobs.forEach( function (element) {
          if (element['employer_name'] == $scope.employer_name_temporary && element['name'] == $scope.name_temporary){
-            console.log($scope.employer_name_temporary);
-            element['worker_name'] = $scope.user.name;
-            $scope.newJob =  element;
+            $scope.temporary_element = element;
+            $scope.temporary_element['worker_name'] = $scope.user.name;
+            $scope.temporary_element['status'] = 'applied';
+            $scope.newJob =  $scope.temporary_element;
          }
       });
    }
