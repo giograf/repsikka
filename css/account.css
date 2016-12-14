@@ -90,7 +90,7 @@
    transition-delay: 0.05s;
 }
 
-/* */
+/* Greener border for the newly published / applied job */
 .newJob {
    border: 4px solid rgba(60,118,61, 0.5) !important;
 }
