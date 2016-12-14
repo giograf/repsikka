@@ -2,6 +2,7 @@
  * Global namespace
  */
 var job_list = [{
+   "id": "1",
    "name": "Honey Delivering job",
    "location": "Oulu",
    "category": "Deliver",
@@ -10,6 +11,7 @@ var job_list = [{
    "description": "According to all known laws of aviation there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
 },
 {
+  "id": "1",
    "name": "Looking for cook",
    "location": "Oulu",
    "category": "Cook",
@@ -18,6 +20,7 @@ var job_list = [{
    "description": "You make food me naow."
 },
 {
+   "id": "2",
    "name": "Moving job",
    "location": "Oulu",
    "category": "Deliver",
@@ -26,6 +29,7 @@ var job_list = [{
    "description": "Help I need a person with car to move my stuff."
 },
 {
+   "id": "3",
    "name": "Dirty room",
    "location": "Oulu",
    "category": "Cleaning",
@@ -34,6 +38,7 @@ var job_list = [{
    "description": "My mom says my room is too dirty help clean."
 },
 {
+   "id": "4",
    "name": "Looking for tutor",
    "location": "Oulu",
    "category": "Tutoring",
@@ -42,6 +47,7 @@ var job_list = [{
    "description": "Can't seem to learn swedish need help"
 },
 {
+   "id": "5",
    "name": "Need a baby sittah",
    "location": "Oulu",
    "category": "Babysitting",
@@ -114,8 +120,9 @@ app.controller('navbarCtrl', function ($scope, $window) {
       }
    };
 });
-app.controller('accountCtrl', function ($scope) {
+app.controller('accountCtrl', function ($scope,$location,$http) {
    /* The following controller fills out the Account page. */
+
    $scope.pill_content = [{
       "pill_name": "For Worker",
       "id": "employee",
@@ -141,9 +148,28 @@ app.directive('pageHeading', function () {
    };
 });
 
-app.controller("filterCtrl", function ($scope) {
+
+app.controller("filterCtrl", function ($scope,$location,$http,$window) {
 
    $scope.jobs = job_list;
+   $scope.applied = [];
+
+   $scope.apply = function(id){
+   $scope.jobApply = true;
+   //shows that applied to: <p>
+   $scope.applied = $scope.jobs[id-1];
+   //takes the specific object from the jobs array
+
+   var data = $scope.applied
+   $http({
+       method: "post",
+       url: "account.html",
+       data: data,
+       headers: {'Content-Type': 'json'}
+     }).then(function (data) {
+       $location.path('account.html');
+     });
+   };
 
    $scope.FilteringArray = {};
    $scope.index = 0;
