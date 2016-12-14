@@ -173,11 +173,13 @@ app.controller('accountCtrl', function ($scope, $location) {
       }
    ];
    $scope.jobs = job_list;
-   if ( $location.search().hasOwnProperty( 'employer_name' ) ) {
+   if ( $location.search()['status'] == "posted" ) {
       // Compose datetime out of date and time supplied
+      if ($location.search()['time']){
       $scope.temporary_time = $location.search()['time'];
       $scope.temporary_hours = Number($scope.temporary_time.substr(0,2)) ;
       $scope.temporary_minutes = Number($scope.temporary_time.substr(2,3)) ;
+      }
       $scope.datetime = new Date($location.search()['date']);
       $scope.datetime.setHours($scope.temporary_hours);
       $scope.datetime.setMinutes($scope.temporary_minutes);
@@ -196,6 +198,17 @@ app.controller('accountCtrl', function ($scope, $location) {
       };
       job_list.push($scope.newJob);
    }
+   else if ($location.search()['status'] == "applied"){
+      $scope.employer_name_temporary = $location.search()['employer_name'];
+      $scope.name_temporary = $location.search()['name'];
+      // get the array and push the worker_name to it
+      $scope.jobs.forEach( function (element) {
+         if (element['employer_name'] == $scope.employer_name_temporary && element['name'] == $scope.name_temporary){
+            console.log($scope.employer_name_temporary);
+            element['worker_name'] = $scope.user.name;
+         }
+      });
+   }
 });
 
 app.directive('pageHeading', function () {
@@ -207,7 +220,12 @@ app.directive('pageHeading', function () {
 app.controller("filterCtrl", function ($scope) {
 
    $scope.jobs = job_list;
-
+   $scope.setEmployeeJob = function (name, employer_name){
+      console.log(employer_name);
+      $scope.job_name = name;
+      $scope.job_employer = employer_name;
+      $('browse_form').submit();
+   };
    $scope.FilteringArray = {};
    $scope.index = 0;
    $scope.categoryFilter = function (job) {
