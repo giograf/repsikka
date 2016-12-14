@@ -68,6 +68,6 @@ function shake(well) {
 
       setTimeout(function() {
          icon.classList.remove('animate'); 
-      },399);
+      },380);
    }
 };
