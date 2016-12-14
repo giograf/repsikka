@@ -54,7 +54,7 @@ var job_list = [{
    "pay": 40,
    "description": "Can't seem to learn swedish need help",
    "employer_name" : "Risto Järvelä",
-   "worker_name" : "John Doe",
+   "worker_name" : "Pekka Jokinen",
    "status": "applied"
 },
 {
@@ -64,7 +64,7 @@ var job_list = [{
    "date": new Date("2016/12/16"),
    "pay": 30,
    "description": "My babyboy requires sitting.",
-   "employer_name" : "John Doe",
+   "employer_name" : "Maaria Keskitalo",
    "status": "posted"
 }];
 
@@ -173,6 +173,8 @@ app.controller('accountCtrl', function ($scope, $location) {
       }
    ];
    $scope.jobs = job_list;
+
+   // If a new job has been submitted, execute:
    if ( $location.search()['status'] == "posted" ) {
       // Compose datetime out of date and time supplied
       if ($location.search()['time']){
@@ -198,6 +200,7 @@ app.controller('accountCtrl', function ($scope, $location) {
       };
       job_list.push($scope.newJob);
    }
+   // If a new job has been applied to, execute:
    else if ($location.search()['status'] == "applied"){
       $scope.employer_name_temporary = $location.search()['employer_name'];
       $scope.name_temporary = $location.search()['name'];
@@ -206,6 +209,7 @@ app.controller('accountCtrl', function ($scope, $location) {
          if (element['employer_name'] == $scope.employer_name_temporary && element['name'] == $scope.name_temporary){
             console.log($scope.employer_name_temporary);
             element['worker_name'] = $scope.user.name;
+            $scope.newJob =  element;
          }
       });
    }
@@ -218,6 +222,7 @@ app.directive('pageHeading', function () {
 });
 
 app.controller("filterCtrl", function ($scope) {
+   // If a new job has been submitted, execute:
 
    $scope.jobs = job_list;
    $scope.setEmployeeJob = function (name, employer_name){

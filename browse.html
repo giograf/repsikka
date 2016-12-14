@@ -36,18 +36,19 @@
    <form id="browse_form" action="account.html" class="form-horizontal">
       <div class="form-group col-sm-2">
          <h5>Categories</h5>
-         <label><input type="checkbox" ng-model="FilteringArray['Deliver']"/> Delivery</label><br>
-         <label><input type="checkbox" ng-model="FilteringArray['Cook']"/> Cooking</label><br>
-         <label><input type="checkbox" ng-model="FilteringArray['Cleaning']"/> Cleaning</label><br>
-         <label><input type="checkbox" ng-model="FilteringArray['Tutoring']"/> Tutoring</label><br>
-         <label><input type="checkbox" ng-model="FilteringArray['Babysitting']"/> Babysitting</label><br>
+         <label><input type="checkbox" id="Delivery" ng-model="FilteringArray['Deliver']"/> Delivery</label><br>
+         <label><input type="checkbox" id="Cooking" ng-model="FilteringArray['Cook']"/> Cooking</label><br>
+         <label><input type="checkbox" id="Cleaning" ng-model="FilteringArray['Cleaning']"/> Cleaning</label><br>
+         <label><input type="checkbox" id="Tutoring" ng-model="FilteringArray['Tutoring']"/> Tutoring</label><br>
+         <label><input type="checkbox" id="Babysitting" ng-model="FilteringArray['Babysitting']"/> Babysitting</label><br>
          <div class="col-sm-10">
          </div>
       </div>
       <div class="form-group">
          <div class="control-label col-sm-2"></div>
          <div class="col-sm-10">
-            <ul class="list-group joblist" ng-repeat="job in jobs" ng-show="categoryFilter(job)">
+            <!-- Does not display the job if I posted it -->
+            <ul class="list-group joblist" ng-repeat="job in jobs" ng-if="job.employer_name != user.name" ng-show="categoryFilter(job)">
                <li class="list-group-item" id="{{$index}}" data-toggle="modal" data-target="#Module{{$index}}">
                   {{job.name}}
                </li>
@@ -69,6 +70,8 @@
                               <strong>Date:</strong> {{job.date | date:'d.M.yyyy H:mm'}}
                            </div>
                            <div class="modal-footer">
+                              <!-- Function below assigns current job parameters to a hidden input, and moves
+                                    user to account.html -->
                               <button class="btn btn-primary btn-lg center-block" style="width: 100px"
                                       ng-click="setEmployeeJob(job.name, job.employer_name)">Apply
                               </button>
