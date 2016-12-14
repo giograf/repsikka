@@ -120,9 +120,9 @@ app.controller('navbarCtrl', function ($scope, $window) {
       }
    };
 });
-app.controller('accountCtrl', function ($scope,$location,$http) {
+app.controller('accountCtrl', function ($scope) {
    /* The following controller fills out the Account page. */
-
+  //$scope.apply = apply.apply;
    $scope.pill_content = [{
       "pill_name": "For Worker",
       "id": "employee",
@@ -164,11 +164,12 @@ app.controller("filterCtrl", function ($scope,$location,$http,$window) {
    $http({
        method: "post",
        url: "account.html",
-       data: data,
+       data: $scope.jobs[id-1],
        headers: {'Content-Type': 'json'}
      }).then(function (data) {
-       $location.path('account.html');
+       $window.location.href='account.html';
      });
+     //sends the data to account.html
    };
 
    $scope.FilteringArray = {};
