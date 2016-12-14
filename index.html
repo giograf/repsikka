@@ -18,6 +18,9 @@
 
       <!-- Page-relevant CSS/JS scripts -->
       <script src="./js/main-angular.js"></script>
+      <script src="./js/index-animations.js"></script>
+      <link rel="stylesheet" href="./css/carousel.css" />
+      <link rel="stylesheet" href="./css/index.css"/>
 
    </html>
    <body ng-app="repsikkaApp"><!-- ng-app to activate the "main-angular.js" script. -->
@@ -27,11 +30,38 @@
       <div page-heading class="navbar navbar-default"></div>
 
       <div class="container">
-      
+
+      <!-- Carousel starts here -->
+      <div class="hidden-xs hidden-sm carousel-box carousel-active">
+         <div class="carousel-buttons">
+            <span class="prev">
+               <span class="glyphicon glyphicon-chevron-left"></span>
+            </span>
+            <span class="next">
+               <span class="glyphicon glyphicon-chevron-right"></span>
+            </span>
+         </div>
+         <ol class="carousel-content">
+            <li class="current"><img src="./img/carousel1.jpg" alt="carousel image">
+               <div class="image-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+            </li>
+            <li><img src="./img/carousel2.jpg" alt="carousel image">
+               <div class="image-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            </li>
+            <li><img src="./img/carousel3.jpg" alt="carousel image">
+               <div class="image-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+            </li>
+            <li><img src="./img/carousel4.jpg" alt="carousel image">
+               <div class="image-text">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            </li>
+         </ol>
+      </div>
+      <!-- Carousel ends here -->
+
          <div class="row" ng-controller="indexCtrl">
             <div class="col-sm-4">
-               <div class="well">
-                  <img style="float:left" id="imgUrgent" src="./img/wait.png" width="57px"></img>
+               <div class="well" onmouseenter="shake(this)">
+                  <img style="float:left" class="shake-img" src="./img/wait.png" width="57px"></img>
                   <h3>Urgent Jobs</h3>
                </div>
                <ul class="list-group">
@@ -43,23 +73,29 @@
             </div>
             
             <div class="col-sm-4">
-               <a href="browse.html"><div class="well">
-                  <img style="float:left" id="imgSearch" src="./img/magnifying glass.png" width="57px"></img>
+               <a href="browse.html"><div class="well" onmouseenter="shake(this)">
+                  <img style="float:left" class="shake-img" src="./img/magnifying glass.png" width="57px"></img>
                   <h3>Browse jobs</h3>
                </div></a>
-               <ul class="">
-                  <li ng-repeat="category in categories track by $index"><a href="browse.html?{{category}}">{{category}}</a></li>
-               </ul>
+               <div class="list-group">
+                  <a ng-repeat="category in categories track by $index" href="browse.html?filterCategory='{{category}}'" class="list-group-item">{{category}}</a>
+               </div>
             </div>
 
             <div class="col-sm-4">
-               <a href="add.html"><div class="well">
-                  <img style="float:left" id="imgPost" src="./img/document add.png" width="57px"></img>
+               <a href="add.html"><div class="well" onmouseenter="shake(this)">
+                  <img style="float:left" class="shake-img" src="./img/document add.png" width="57px"></img>
                   <h3>Post a job</h3>
                </div></a>
             </div>
          </div>
       </div>
    </body>
+<script>
+   $( function(){
+      // Escaping the flash of unstyled content
+      $('body').css('display', 'block');
+   });
+</script>
 </html>
 
