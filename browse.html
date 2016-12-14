@@ -68,7 +68,7 @@
                         Date: {{job.date | date:'d.M.yyyy H:mm'}}
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="apply(job.id)">Apply</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Apply</button>
                       </div>
                     </div>
                   </div>
@@ -80,7 +80,6 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10"></div>
               <div class="col-sm-10">
-                <p ng-show="jobApply"><b>Applied to:</b> {{applied.name}}</p>
               </div>
             </div>
           </div>
