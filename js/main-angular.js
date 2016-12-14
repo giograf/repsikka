@@ -2,7 +2,6 @@
  * Global namespace
  */
 var job_list = [{
-   "id": "1",
    "name": "Honey Delivering job",
    "location": "Oulu",
    "category": "Deliver",
@@ -16,7 +15,6 @@ var job_list = [{
    "status": "accepted"
 },
 {
-  "id": "1",
    "name": "Looking for cook",
    "location": "Oulu",
    "category": "Cook",
@@ -27,7 +25,6 @@ var job_list = [{
    "status": "posted"
 },
 {
-   "id": "2",
    "name": "Moving job",
    "location": "Oulu",
    "category": "Deliver",
@@ -39,7 +36,6 @@ var job_list = [{
    "status": "applied"
 },
 {
-   "id": "3",
    "name": "Dirty room",
    "location": "Oulu",
    "category": "Cleaning",
@@ -51,7 +47,6 @@ var job_list = [{
    "status": "accepted"
 },
 {
-   "id": "4",
    "name": "Looking for tutor",
    "location": "Oulu",
    "category": "Tutoring",
@@ -63,7 +58,6 @@ var job_list = [{
    "status": "applied"
 },
 {
-   "id": "5",
    "name": "Need a baby sittah",
    "location": "Oulu",
    "category": "Babysitting",
@@ -160,7 +154,6 @@ app.config(['$locationProvider', function ($locationProvider) {
 
 app.controller('accountCtrl', function ($scope, $location) {
    /* The following controller fills out the Account page. */
-  //$scope.apply = apply.apply;
    $scope.pill_content = [
       {
       "pill_name": "For Worker",
@@ -211,29 +204,9 @@ app.directive('pageHeading', function () {
    };
 });
 
-
-app.controller("filterCtrl", function ($scope,$location,$http,$window) {
+app.controller("filterCtrl", function ($scope) {
 
    $scope.jobs = job_list;
-   $scope.applied = [];
-
-   $scope.apply = function(id){
-   $scope.jobApply = true;
-   //shows that applied to: <p>
-   $scope.applied = $scope.jobs[id-1];
-   //takes the specific object from the jobs array
-
-   var data = $scope.applied
-   $http({
-       method: "post",
-       url: "account.html",
-       data: $scope.jobs[id-1],
-       headers: {'Content-Type': 'json'}
-     }).then(function (data) {
-       $window.location.href='account.html';
-     });
-     //sends the data to account.html
-   };
 
    $scope.FilteringArray = {};
    $scope.index = 0;
