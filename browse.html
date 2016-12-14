@@ -14,7 +14,8 @@
       <!--<link rel="stylesheet" href="./css/bootstrap.theme.min.css" /> Optional Bootstrap theme file -->
       <script src="./libs/jquery-3.1.1.min.js"></script>
       <script src="./libs/angular.min.js"></script>
-       <script src="./libs/angular-locale_fi-fi.js"></script>
+      <script src="./libs/angular-animate.js"></script>
+      <script src="./libs/angular-locale_fi-fi.js"></script>
       <script src="./libs/bootstrap.min.js"></script>
 
       <!-- Page-relevant CSS/JS scripts -->
@@ -44,7 +45,7 @@
           <div class="form-group">
             <div class="control-label col-sm-2"></div>
           <div class="col-sm-10">
-              <ul class="list-group" ng-repeat="job in jobs" ng-show="categoryFilter(job)">
+              <ul class="list-group joblist" ng-repeat="job in jobs" ng-show="categoryFilter(job)">
                 <li class="list-group-item" id="{{$index}}" data-toggle="modal" data-target="#Module{{$index}}">{{job.name}}</li>
                 <!-- Big as Modal code that is required-->
                 <div class="modal fade" id="Module{{$index}}" role="dialog">
@@ -64,7 +65,7 @@
                         Date: {{job.date | date:'d.M.yyyy H:mm'}}
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="apply(job.id)">Apply</button>
                       </div>
                     </div>
                   </div>
@@ -76,6 +77,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10"></div>
               <div class="col-sm-10">
+                <p ng-show="jobApply"><b>Applied to:</b> {{applied.name}}</p>
               </div>
             </div>
           </div>
