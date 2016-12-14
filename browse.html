@@ -4,9 +4,12 @@
 
    <title>Repsikka</title>
 
-   <!-- Metadata -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Metadata -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <!-- This line is necessary to support $location HTML5 mode (for query string parameters). -->
+	   <base href="/" target="_self">
 
    <!-- CSS/JS Libraries -->
    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
@@ -21,8 +24,7 @@
    <!-- Page-relevant CSS/JS scripts -->
    <script src="./js/main-angular.js"></script>
    <link rel="stylesheet" href="./css/index.css"/>
-
-</html>
+  </head>
 <body ng-app="repsikkaApp" ng-controller="repsikkaCtrl"><!-- ng-app to activate the "main-angular.js" script. -->
 
 <!-- This is the topbar of the webpage, easily accesible. Can be get using page-heading attribute.

@@ -72,7 +72,7 @@ var job_list = [{
 var category_list = ['Delivery', 'Cleaning', 'Cooking', 'Dog Walking', 'Babysitting', 'Tutoring', 'Other'];
 
 // To make a code clearer, all elements of the application to be called by the "app" variable.
-var app = angular.module('repsikkaApp', [/* module includes */]);
+var app = angular.module('repsikkaApp', ['ngAnimate']);
 
 app.controller('repsikkaCtrl', ['$scope', function ($scope) {
    $scope.user =
@@ -121,7 +121,7 @@ app.controller('indexCtrl', function($scope,$timeout) {
    var fireDigestEverySecond = function() {
       $timeout(function() {fireDigestEverySecond()}, 1000);
    };
-    
+
     fireDigestEverySecond();
 });
 
