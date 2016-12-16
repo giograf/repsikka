@@ -31,9 +31,9 @@ Our Date/Time Picker relies on Jquery:
 ```
 To include the picker in your code:
 ```HTML
-<script src="./js/picker.js"></script>
-<script src="./js/picker.date.js"></script>
-<script src="./js/picker.time.js"></script>
+<script src="./lib/picker.js"></script>
+<script src="./lib/picker.date.js"></script>
+<script src="./lib/picker.time.js"></script>
 <link rel="stylesheet" href="./css/default.css" />
 <link rel="stylesheet" href="./css/default.time.css" />
 <link rel="stylesheet" href="./css/default.date.css" />
@@ -41,15 +41,14 @@ To include the picker in your code:
 Initially picker has been utilized by add.html
 
 # Job Object
-
-Would it fit?
+Information about a job is stored as a JSON array, containing following fields:
 ```javascript
 //Text is sent
 "name" - text                             
 //"yyyy/mm/dd" format is sent
-"date_submit" - date                      
-//"HH:mm" format time is sent
-"time_submit" - time                      
+"date" - date                      
+//"HH i" format time is sent
+"time" - time                      
 //Text is sent
 "location" - text                         
 //Text is sent
@@ -65,7 +64,7 @@ Would it fit?
 //Text is sent
 "status" - text
 ```
-  P.S. Possible Status Values:
-    * "posted
-    * "applied"
-    * "accepted"
+Status Values:
+- "posted"
+- "applied"
+- "accepted"
