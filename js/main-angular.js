@@ -1,6 +1,8 @@
 /*
  * Global namespace
  */
+
+/* Create job storage. */
 var job_list = [{
    "name": "Honey Delivering job",
    "location": "Oulu",
@@ -15,12 +17,12 @@ var job_list = [{
    "status": "accepted"
 },
 {
-   "name": "Looking for cook",
+   "name": "Looking for a cook",
    "location": "Oulu",
    "category": "Cook",
    "date": new Date("2016/12/15 12:44"),
    "pay": 10,
-   "description": "You make food me naow.",
+   "description": "I am looking for a person who could make a dinner in the evening",
    "employer_name" : "Risto Järvelä",
    "status": "posted"
 },
@@ -30,7 +32,7 @@ var job_list = [{
    "category": "Deliver",
    "date": new Date("2016/12/15"),
    "pay": 10,
-   "description": "Help I need a person with car to move my stuff.",
+   "description": "I need a person with car to move my stuff.",
    "employer_name" : "Risto Järvelä",
    "worker_name" : "Risto Peltola",
    "status": "applied"
@@ -41,7 +43,7 @@ var job_list = [{
    "category": "Cleaning",
    "date": new Date("2016/12/18 19:20"),
    "pay": 15,
-   "description": "My mom says my room is too dirty help clean.",
+   "description": "Room is unclean after party. Need a worker.",
    "employer_name" : "Risto Järvelä",
    "worker_name" : "John Doe",
    "status": "accepted"
@@ -52,18 +54,18 @@ var job_list = [{
    "category": "Tutoring",
    "date": new Date("2016/12/17"),
    "pay": 40,
-   "description": "Can't seem to learn swedish need help",
+   "description": "Can't seem to learn swedish, seeking a tutor",
    "employer_name" : "Risto Järvelä",
    "worker_name" : "Pekka Jokinen",
    "status": "applied"
 },
 {
-   "name": "Need a baby sittah",
+   "name": "Babysitter needed",
    "location": "Oulu",
    "category": "Babysitting",
    "date": new Date("2016/12/16"),
    "pay": 30,
-   "description": "My babyboy requires sitting.",
+   "description": "Working on Thursday, need a helper",
    "employer_name" : "Maaria Keskitalo",
    "status": "posted"
 }];
